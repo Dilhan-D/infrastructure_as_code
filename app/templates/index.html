@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Premier Projet Docker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e293b;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: #0f172a;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+        h1 { color: #38bdf8; }
+        .badge {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #38bdf8;
+            color: #0f172a;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🐳 Bienvenue dans mon conteneur Docker !</h1>
+        <p>Cette page est servie par Flask, dans un conteneur Docker.</p>
+        <div class="badge">Hostname du conteneur : {{ hostname }}</div>
+    </div>
+</body>
+</html>
