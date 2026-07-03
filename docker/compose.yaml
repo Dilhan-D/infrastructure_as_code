@@ -31,4 +31,4 @@ services:
       dockerfile: docker/Dockerfile_app
     restart: always
     ports:
-      - "5000:5000"
+      - "${APP_PORT}:5000"
