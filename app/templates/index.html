@@ -1,139 +1,54 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ app_name }}</title>
-    <style>
-        :root {
-            color-scheme: light;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #48586d 0%, #3b67ae 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 24px;
-            color: #233142;
-        }
-
-        .card {
-            background: white;
-            padding: 32px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-            width: min(100%, 620px);
-        }
-
-        .badge {
-            display: inline-block;
-            background: #0d6efd;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 999px;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 16px;
-        }
-
-        h1 {
-            margin: 0 0 10px;
-            color: #0d6efd;
-            font-size: 28px;
-        }
-
-        .subtitle {
-            margin: 0 0 22px;
-            color: #596273;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-
-        .info-item {
-            background: #f7faff;
-            border: 1px solid #dce8ff;
-            border-radius: 10px;
-            padding: 12px;
-        }
-
-        .info-item span {
-            display: block;
-            font-size: 12px;
-            color: #6b7280;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .info-item strong {
-            color: #0d6efd;
-            font-size: 15px;
-        }
-
-        .status {
-            background: #eef5ff;
-            border-radius: 10px;
-            padding: 12px 14px;
-            margin-bottom: 16px;
-            color: #36517a;
-        }
-
-        .features {
-            padding-left: 18px;
-            color: #49515f;
-            line-height: 1.6;
-        }
-
-        .features li {
-            margin-bottom: 6px;
-        }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <div class="badge">Docker + Flask</div>
-        <h1>Bienvenue {{ nom }} !</h1>
-        <p class="subtitle">Cette application est maintenant plus complète avec des informations dynamiques et une interface plus claire.</p>
-
-        <div class="grid">
-            <div class="info-item">
-                <span>Hôte</span>
-                <strong>{{ hostname }}</strong>
-            </div>
-            <div class="info-item">
-                <span>Environnement</span>
-                <strong>{{ environment }}</strong>
-            </div>
-            <div class="info-item">
-                <span>Port</span>
-                <strong>{{ port }}</strong>
-            </div>
-            <div class="info-item">
-                <span>Python</span>
-                <strong>{{ python_version }}</strong>
-            </div>
+{% extends "base.html" %}
+{% block title %}Boursoum — Suivez les marchés en temps réel{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <span class="badge">Nouveau · Édition 2026</span>
+        <h1>Les marchés financiers,<br>en un coup d'œil.</h1>
+        <p class="hero-subtitle">
+            Boursoum vous offre une vue claire et épurée sur les tendances boursières mondiales,
+            pensée pour les investisseurs exigeants.
+        </p>
+        <div class="hero-actions">
+            <a href="{{ url_for('marches') }}" class="btn btn-primary">Voir les marchés</a>
+            <a href="{{ url_for('apropos') }}" class="btn btn-secondary">En savoir plus</a>
         </div>
-
-        <div class="status">
-            <strong>Dernière mise à jour :</strong> {{ timestamp }}
-        </div>
-
-        <ul class="features">
-            <li>Application Flask exécutée dans un conteneur Docker.</li>
-            <li>Configuration centralisée via variables d’environnement.</li>
-            <li>Interface plus professionnelle et facile à lire.</li>
-        </ul>
     </div>
-</body>
-</html>
+</section>
+
+<section class="stats">
+    <div class="stat-card">
+        <span class="stat-value">+120</span>
+        <span class="stat-label">Indices suivis</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-value">24/7</span>
+        <span class="stat-label">Mise à jour continue</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-value">99.9%</span>
+        <span class="stat-label">Disponibilité</span>
+    </div>
+</section>
+
+<section class="features">
+    <h2>Pourquoi Boursoum</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Données claires</h3>
+            <p>Des graphiques épurés pour comprendre les tendances en un instant.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Rapide</h3>
+            <p>Une interface légère, pensée pour la performance et la simplicité.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Fiable</h3>
+            <p>Une infrastructure robuste construite pour durer dans le temps.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
