@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Statistiques{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1>📊 Statistiques des visites</h1>
+    <a class="btn-secondary" href="/export">⬇ Exporter en CSV</a>
+</div>
+
+<div class="grid-cards">
+    <div class="stat-card">
+        <div class="stat-value">{{ total_visits }}</div>
+        <div class="stat-label">Visites totales</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ unique_visitors }}</div>
+        <div class="stat-label">Visiteurs uniques</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ avg_response }} ms</div>
+        <div class="stat-label">Temps de réponse moyen</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ mobile_count }}</div>
+        <div class="stat-label">Visites mobiles</div>
+    </div>
+</div>
+
+<div class="grid-charts">
+    <div class="chart-box">
+        <h2>Visites par jour</h2>
+        <canvas id="visitsChart"></canvas>
+    </div>
+    <div class="chart-box">
+        <h2>Appareils</h2>
+        <canvas id="devicesChart"></canvas>
+    </div>
+</div>
+
+<div class="grid-tables">
+    <div class="table-box">
+        <h2>Top navigateurs</h2>
+        <table>
+            <tr><th>Navigateur</th><th>Nombre</th></tr>
+            {% for row in top_browsers %}
+            <tr><td>{{ row.browser }}</td><td>{{ row.count }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="table-box">
+        <h2>Systèmes d'exploitation</h2>
+        <table>
+            <tr><th>OS</th><th>Nombre</th></tr>
+            {% for row in top_os %}
+            <tr><td>{{ row.os }}</td><td>{{ row.count }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="table-box">
+        <h2>Top pays</h2>
+        <table>
+            <tr><th>Pays</th><th>Nombre</th></tr>
+            {% for row in top_countries %}
+            <tr><td>{{ row.country }}</td><td>{{ row.count }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<div class="table-box full-width">
+    <h2>Visites récentes</h2>
+    <table>
+        <tr><th>IP</th><th>Pays</th><th>Ville</th><th>Navigateur</th><th>OS</th><th>Appareil</th><th>Date</th></tr>
+        {% for row in recent_visits %}
+        <tr>
+            <td>{{ row.ip }}</td>
+            <td>{{ row.country }}</td>
+            <td>{{ row.city }}</td>
+            <td>{{ row.browser }}</td>
+            <td>{{ row.os }}</td>
+            <td><span class="badge">{{ row.device }}</span></td>
+            <td>{{ row.visit_date.strftime('%d/%m/%Y %H:%M') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endblock %}
