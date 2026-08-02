@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Boursoum{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-inner">
+            <a href="{{ url_for('home') }}" class="brand">
+                <span class="brand-mark">M</span>
+                <span class="brand-name">Boursoum</span>
+            </a>
+            <nav class="nav-links">
+                <a href="{{ url_for('home') }}" class="{{ 'active' if active == 'home' }}">Accueil</a>
+                <a href="{{ url_for('marches') }}" class="{{ 'active' if active == 'marches' }}">Marchés</a>
+                <a href="{{ url_for('apropos') }}" class="{{ 'active' if active == 'apropos' }}">À propos</a>
+                <a href="{{ url_for('contact') }}" class="{{ 'active' if active == 'contact' }}">Contact</a>
+            </nav>
+            <button class="burger" id="burger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <nav class="nav-mobile" id="navMobile">
+            <a href="{{ url_for('home') }}">Accueil</a>
+            <a href="{{ url_for('marches') }}">Marchés</a>
+            <a href="{{ url_for('apropos') }}">À propos</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>&copy; 2026 Boursoum. Tous droits réservés.</p>
+            <div class="footer-links">
+                <a href="#">Confidentialité</a>
+                <a href="#">Mentions légales</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
